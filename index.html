@@ -8,13 +8,18 @@
   <body>
     <div class="input-container">
       <p class="input-title">Metric/Iperial Unit Conversion</p>
-      <input class="input" id="inputNum" type="number"/>
+      <input class="input" id="inputNum" type="number" placeholder="20"/>
       <button class="convertBtn" id="convertBtn">Convert</button>
     </div>
     <div class="list-container">
-      <ul class="list"></ul>
+      <ul class="list" id="list">
+          <li class="ul-list" id="list-{typeOfMeasure}">
+         '${inputNum} meters = ${meterToFeet} feet |
+          ${inputNum} feet = ${feetTooMeter} meter${singOrPlural}
+          </li>
+      </ul>
     </div>
     <div id="app"></div>
-    <script type="module" src="index.js"></script>
+    <script  type='module' src="src/index.js"></script>
   </body>
 </html>
