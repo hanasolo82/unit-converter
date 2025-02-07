@@ -7,32 +7,40 @@ const btnEl = document.getElementById("convertBtn")
 // 1 litro = 0.26417 galons
 // 1 kg = 2.20462 pounds 
 
-function converter(input, measure) {
+const values = [
+    {   
+        title: "Length",
+        peers: "Meter/Feet", 
+        quantity: 3.28084
+    },
 
-    if(measure === length) {
-       input.value * 3.28084
-    } else if (measure === volume) {
-        input.value * 0.26417
-    } else {
-        input.value * 2.20462
-    }
+]
+
+function converter() {
+  return  inputEl.value * 3.28084
 }
-console.log(converter())
-btnEl.addEventListener('click', () => {
-     render()
-})
-
-
-
-/* function render(obj, title) {
-let listRender = ''
- const ulList = `
-            <li class="ul-list">
-                <p class="ul-title">${title}</p>
-            </li>
+ 
+function render() {
+    
+        let sentence = `
+        <li class="ul-list" id="xxx">
+            <h2>xxx</h2>
+             <p>
+                $ meters =  ${converter()} feet 
+                |
+                input feet = xxx meter
+             </p>
+        </li>
+       
     `
-   obj.innerHTML += ulList
+
+    
+    listEl.innerHTML = sentence
 }
 
+btnEl.addEventListener('click', () => {
+    render()
+    converter()
+}
+)
 
-render(listEl)*/
