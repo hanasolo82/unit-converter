@@ -7,40 +7,75 @@ const btnEl = document.getElementById("convertBtn")
 // 1 litro = 0.26417 galons
 // 1 kg = 2.20462 pounds 
 
-const values = [
-    {   
-        title: "Length",
-        peers: "Meter/Feet", 
-        quantity: 3.28084
+
+const measureType = [
+
+    {
+        name:"Length",
+        unitOne: "Meter",
+        unitTwo: "Feet"
+        
     },
+    {
+        name: "Volume",
+        unitOne: "Liter",
+        unitTwo: "Gallon"
+    }, 
+    {
+        name: "Mass",
+        unitOne: "Kilo",
+        unitTwo: "Pound"
+    } 
 
 ]
 
-function converter() {
-  return  inputEl.value * 3.28084
-}
- 
-function render() {
+
+function converter(type) {
     
+        if (type.name === "Length") { 
+            let lengthRes = [inputEl.value * 3.28084, inputEl.value * 0.3048 ]
+            return lengthRes
+        } 
+        else if (type.name === "Volume") { 
+            let volumeRes = [inputEl.value * 0.26417, inputEl.value * 3.78541]
+            return volumeRes; 
+        } 
+        else if (type.name === "Mass") { 
+            let massResult = [inputEl.value * 2.20462, inputEl.value * 0.45359237]
+            return massResult ;  
+        }
+        return 'Processing value'; 
+    }
+
+  
+
+ 
+function render(arr) {
+   let arrSentence = '' 
+   
+   for(let i = 0; i < arr.length; i++) {
+    let result = converter(arr[i])
+    let measureResult = arr[i].name
         let sentence = `
         <li class="ul-list" id="xxx">
-            <h2>xxx</h2>
+            <h2>${measureResult}</h2>
              <p>
-                $ meters =  ${converter()} feet 
+                ${inputEl.value} ${arr[i].unitOne} =  ${result[0]} ${arr[i].unitTwo} 
                 |
-                input feet = xxx meter
+                ${inputEl.value} ${arr[i].unitTwo} = ${result[1]} ${arr[i].unitOne}
              </p>
         </li>
        
     `
-
+    arrSentence += sentence
+} 
     
-    listEl.innerHTML = sentence
+    listEl.innerHTML = arrSentence
 }
 
 btnEl.addEventListener('click', () => {
-    render()
-    converter()
+    render(measureType)
+    
 }
 )
 
